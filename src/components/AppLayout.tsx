@@ -62,9 +62,9 @@ export default function AppLayout({ children }: AppLayoutProps) {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-indigo-950 to-gray-900 text-slate-100">
+  <div className="min-h-screen bg-neutral-50 text-slate-100">
       {/* Mobile sidebar */}
-      <div className={`fixed inset-0 z-50 lg:hidden ${sidebarOpen ? 'block' : 'hidden'}`}>
+      <div className={`fixed inset-0 z-50 lg:hidden ${sidebarOpen ? 'block' : 'hidden'}`}> 
         <div className="fixed inset-0 bg-black bg-opacity-60" onClick={() => setSidebarOpen(false)} />
         <div className="fixed inset-y-0 left-0 flex w-72 flex-col bg-gradient-to-br from-slate-900 via-indigo-950 to-gray-900 shadow-2xl rounded-r-3xl">
           <div className="flex h-20 items-center justify-between px-6 border-b border-slate-800/60">
@@ -145,8 +145,8 @@ export default function AppLayout({ children }: AppLayoutProps) {
       </div>
 
       {/* Desktop sidebar */}
-      <div className="hidden lg:fixed lg:inset-y-0 lg:flex lg:w-72 lg:flex-col">
-        <div className="flex flex-col flex-grow bg-gradient-to-br from-slate-900 via-indigo-950 to-gray-900 border-r border-slate-800/60 rounded-r-3xl">
+      <div className="hidden lg:fixed lg:inset-y-0 lg:flex lg:w-72 lg:flex-col z-50">
+        <div className="flex flex-col flex-grow bg-gradient-to-br from-slate-900 via-indigo-950 to-gray-900 border-r border-slate-800/60 rounded-br-3xl">
           <div className="flex h-20 items-center px-6 border-b border-slate-800/60">
             <span className="font-bold text-xl text-indigo-300 tracking-wide flex items-center gap-2">
               <LayoutDashboard className="w-7 h-7 text-indigo-400" />
@@ -215,10 +215,10 @@ export default function AppLayout({ children }: AppLayoutProps) {
       </div>
 
       {/* Main content */}
-  <div className="lg:pl-72">
+  <div className="lg:pl-72 bg-neutral-50 min-h-screen">
         {/* Mobile menu button */}
         <div className="sticky top-0 z-40 lg:hidden">
-          <div className="flex h-20 items-center gap-x-4 border-b border-slate-800/60 bg-gradient-to-r from-slate-900 via-indigo-950 to-gray-900 px-6 shadow-lg sm:gap-x-6">
+    <div className="flex h-20 items-center gap-x-4 border-b border-slate-800/60 bg-gradient-to-r from-slate-900 via-indigo-950 to-gray-900 px-6 shadow-lg sm:gap-x-6 lg:ml-[-2.5rem] lg:z-40">
             <button
               type="button"
               className="-m-2.5 p-2.5 text-slate-300 lg:hidden"
@@ -258,7 +258,7 @@ export default function AppLayout({ children }: AppLayoutProps) {
           </div>
         </div>
 
-        <main>
+        <main className="bg-neutral-50">
           {children}
         </main>
       </div>

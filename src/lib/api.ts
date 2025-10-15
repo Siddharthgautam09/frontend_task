@@ -20,18 +20,18 @@ import {
 class ApiClient {
   // Fetch all active users
   async getUsers(): Promise<ApiResponse<User[]>> {
-    const response = await this.client.get<ApiResponse<User[]>>('/users');
+    const response = await this.client.get<ApiResponse<User[]>>('/api/users');
     return response.data;
   }
   private client: AxiosInstance;
   private accessToken: string | null = null;
 
   constructor() {
-    const apiUrl = (process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000').replace(/\/$/, '');
-    console.log('🔗 API Base URL:', `${apiUrl}/api`); // Debug log
+    const apiUrl = (process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5001').replace(/\/$/, '');
+    console.log('🔗 API Base URL:', apiUrl); // Debug log
     
     this.client = axios.create({
-      baseURL: `${apiUrl}/api`,
+      baseURL: apiUrl,
       timeout: 10000,
       headers: {
         'Content-Type': 'application/json',
@@ -104,27 +104,27 @@ class ApiClient {
 
   // Auth methods
   async login(credentials: LoginCredentials): Promise<AuthResponse> {
-    const response = await this.client.post<AuthResponse>('/auth/login', credentials);
+    const response = await this.client.post<AuthResponse>('/api/auth/login', credentials);
     const { accessToken, refreshToken } = response.data.data;
     this.setTokens(accessToken, refreshToken);
     return response.data;
   }
 
   async register(data: RegisterData): Promise<AuthResponse> {
-    const response = await this.client.post<AuthResponse>('/auth/register', data);
+    const response = await this.client.post<AuthResponse>('/api/auth/register', data);
     const { accessToken, refreshToken } = response.data.data;
     this.setTokens(accessToken, refreshToken);
     return response.data;
   }
 
   async refreshToken(refreshToken: string): Promise<{ data: { accessToken: string; refreshToken: string } }> {
-    const response = await this.client.post('/auth/refresh', { refreshToken });
+    const response = await this.client.post('/api/auth/refresh', { refreshToken });
     return response.data;
   }
 
   async logout(): Promise<void> {
     try {
-      await this.client.post('/auth/logout');
+      await this.client.post('/api/auth/logout');
     } catch (error) {
       // Ignore logout errors
     } finally {
@@ -133,17 +133,17 @@ class ApiClient {
   }
 
   async getProfile(): Promise<ApiResponse<{ user: User }>> {
-    const response = await this.client.get<ApiResponse<{ user: User }>>('/auth/profile');
+    const response = await this.client.get<ApiResponse<{ user: User }>>('/api/auth/profile');
     return response.data;
   }
 
   async updateProfile(data: Partial<User>): Promise<ApiResponse<{ user: User }>> {
-    const response = await this.client.put<ApiResponse<{ user: User }>>('/auth/profile', data);
+    const response = await this.client.put<ApiResponse<{ user: User }>>('/api/auth/profile', data);
     return response.data;
   }
 
   async changePassword(data: { currentPassword: string; newPassword: string }): Promise<ApiResponse> {
-    const response = await this.client.put<ApiResponse>('/auth/change-password', data);
+    const response = await this.client.put<ApiResponse>('/api/auth/change-password', data);
     return response.data;
   }
 
@@ -158,32 +158,32 @@ class ApiClient {
       });
     }
     
-    const response = await this.client.get<PaginatedResponse<Project>>(`/projects?${params}`);
+    const response = await this.client.get<PaginatedResponse<Project>>(`/api/projects?${params}`);
     return response.data;
   }
 
   async getProject(id: string): Promise<ApiResponse<{ project: Project; tasks: Task[] }>> {
-    const response = await this.client.get<ApiResponse<{ project: Project; tasks: Task[] }>>(`/projects/${id}`);
+    const response = await this.client.get<ApiResponse<{ project: Project; tasks: Task[] }>>(`/api/projects/${id}`);
     return response.data;
   }
 
   async createProject(data: ProjectFormData): Promise<ApiResponse<{ project: Project }>> {
-    const response = await this.client.post<ApiResponse<{ project: Project }>>('/projects', data);
+    const response = await this.client.post<ApiResponse<{ project: Project }>>('/api/projects', data);
     return response.data;
   }
 
   async updateProject(id: string, data: Partial<ProjectFormData>): Promise<ApiResponse<{ project: Project }>> {
-    const response = await this.client.put<ApiResponse<{ project: Project }>>(`/projects/${id}`, data);
+    const response = await this.client.put<ApiResponse<{ project: Project }>>(`/api/projects/${id}`, data);
     return response.data;
   }
 
   async deleteProject(id: string): Promise<ApiResponse> {
-    const response = await this.client.delete<ApiResponse>(`/projects/${id}`);
+    const response = await this.client.delete<ApiResponse>(`/api/projects/${id}`);
     return response.data;
   }
 
   async getProjectStats(id: string): Promise<ApiResponse<any>> {
-    const response = await this.client.get<ApiResponse<any>>(`/projects/${id}/stats`);
+    const response = await this.client.get<ApiResponse<any>>(`/api/projects/${id}/stats`);
     return response.data;
   }
 
@@ -198,32 +198,32 @@ class ApiClient {
       });
     }
     
-    const response = await this.client.get<PaginatedResponse<Task>>(`/tasks?${params}`);
+    const response = await this.client.get<PaginatedResponse<Task>>(`/api/tasks?${params}`);
     return response.data;
   }
 
   async getTask(id: string): Promise<ApiResponse<{ task: Task }>> {
-    const response = await this.client.get<ApiResponse<{ task: Task }>>(`/tasks/${id}`);
+    const response = await this.client.get<ApiResponse<{ task: Task }>>(`/api/tasks/${id}`);
     return response.data;
   }
 
   async createTask(data: TaskFormData): Promise<ApiResponse<{ task: Task }>> {
-    const response = await this.client.post<ApiResponse<{ task: Task }>>('/tasks', data);
+    const response = await this.client.post<ApiResponse<{ task: Task }>>('/api/tasks', data);
     return response.data;
   }
 
   async updateTask(id: string, data: Partial<TaskFormData>): Promise<ApiResponse<{ task: Task }>> {
-    const response = await this.client.put<ApiResponse<{ task: Task }>>(`/tasks/${id}`, data);
+    const response = await this.client.put<ApiResponse<{ task: Task }>>(`/api/tasks/${id}`, data);
     return response.data;
   }
 
   async deleteTask(id: string): Promise<ApiResponse> {
-    const response = await this.client.delete<ApiResponse>(`/tasks/${id}`);
+    const response = await this.client.delete<ApiResponse>(`/api/tasks/${id}`);
     return response.data;
   }
 
   async addTaskComment(id: string, comment: string): Promise<ApiResponse<{ comment: any }>> {
-    const response = await this.client.post<ApiResponse<{ comment: any }>>(`/tasks/${id}/comments`, { comment });
+    const response = await this.client.post<ApiResponse<{ comment: any }>>(`/api/tasks/${id}/comments`, { comment });
     return response.data;
   }
 
@@ -237,13 +237,13 @@ class ApiClient {
       });
     }
     
-    const response = await this.client.get<PaginatedResponse<Task>>(`/tasks/my-tasks?${params}`);
+    const response = await this.client.get<PaginatedResponse<Task>>(`/api/tasks/my-tasks?${params}`);
     return response.data;
   }
 
   // Analytics methods
   async getDashboardAnalytics(): Promise<ApiResponse<DashboardAnalytics>> {
-    const response = await this.client.get<ApiResponse<DashboardAnalytics>>('/analytics/dashboard');
+    const response = await this.client.get<ApiResponse<DashboardAnalytics>>('/api/analytics/dashboard');
     return response.data;
   }
 
@@ -252,7 +252,7 @@ class ApiClient {
     if (startDate) params.append('startDate', startDate);
     if (endDate) params.append('endDate', endDate);
     
-    const response = await this.client.get<ApiResponse<any>>(`/analytics/projects?${params}`);
+    const response = await this.client.get<ApiResponse<any>>(`/api/analytics/projects?${params}`);
     return response.data;
   }
 
@@ -261,7 +261,7 @@ class ApiClient {
     if (startDate) params.append('startDate', startDate);
     if (endDate) params.append('endDate', endDate);
     
-    const response = await this.client.get<ApiResponse<any>>(`/analytics/team?${params}`);
+    const response = await this.client.get<ApiResponse<any>>(`/api/analytics/team?${params}`);
     return response.data;
   }
 

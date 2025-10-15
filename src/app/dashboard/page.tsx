@@ -162,12 +162,12 @@ export default function Dashboard() {
 
   return (
     <AppLayout>
-      <div className="bg-gradient-to-br from-slate-900 via-indigo-950 to-gray-900 min-h-screen">
+      <div className="bg-gradient-to-r from-slate-900 via-indigo-950 to-gray-900 min-h-screen">
         <header className="bg-gradient-to-r from-slate-900 via-indigo-950 to-gray-900 shadow-lg border-b border-slate-800/60">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex justify-between items-center h-16">
               <div>
-                <h1 className="text-4xl font-bold bg-gradient-to-r from-indigo-400 to-purple-400 bg-clip-text text-transparent">
+                <h1 className="text-3xl font-bold  text-white bg-clip-text text-transparent w-full">
                   Dashboard
                 </h1>
               </div>
@@ -180,9 +180,9 @@ export default function Dashboard() {
           </div>
         </header>
 
-        <main className="max-w-7xl mx-auto px-6 lg:px-8 py-12">
+        <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8 lg:py-12 bg-neutral-50">
 
-          <p className="text-2xl text-slate-300 mb-12">
+          <p className="text-xl sm:text-2xl text-slate-800 mb-8 sm:mb-12 font-medium">
             Welcome back, {user.firstName}!{" "}
             {user.role === "admin"
               ? " Manage your organization."
@@ -192,20 +192,20 @@ export default function Dashboard() {
           {analytics && (
             <>
               {/* Overview Cards */}
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12 mt-8">
-                <div className="group bg-gradient-to-br from-neutral-50 to-neutral-100 rounded-3xl shadow-xl hover:shadow-2xl p-8 border border-slate-200 transition-all duration-300 hover:transform hover:-translate-y-1">
-                  <div className="flex items-center">
-                    <div className="flex-1">
-                      <p className="text-xs font-normal text-black uppercase tracking-wider mb-2">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 lg:gap-8 mb-8 sm:mb-12 mt-6 sm:mt-8">
+                <div className="group bg-white rounded-2xl sm:rounded-3xl shadow-lg hover:shadow-xl p-6 sm:p-8 border border-gray-200 transition-all duration-300 hover:transform hover:-translate-y-1">
+                  <div className="flex items-center justify-between sm:flex-col sm:items-start">
+                    <div className="flex-1 sm:w-full">
+                      <p className="text-xs font-medium text-gray-600 uppercase tracking-wider mb-2">
                         Total Projects
                       </p>
-                      <p className="text-4xl font-normal text-black">
+                      <p className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900">
                         {analytics.overview.totalProjects}
                       </p>
                     </div>
-                    <div className="w-14 h-14 bg-gradient-to-br from-indigo-700 to-indigo-900 rounded-2xl flex items-center justify-center mb-2 group-hover:scale-110 transition-transform duration-300">
+                    <div className="w-12 h-12 sm:w-14 sm:h-14 bg-gradient-to-br from-blue-500 to-blue-700 rounded-xl sm:rounded-2xl flex items-center justify-center sm:mt-4 group-hover:scale-110 transition-transform duration-300">
                       <svg
-                        className="w-8 h-8 text-white"
+                        className="w-6 h-6 sm:w-8 sm:h-8 text-white"
                         fill="none"
                         stroke="currentColor"
                         viewBox="0 0 24 24"
@@ -221,19 +221,19 @@ export default function Dashboard() {
                   </div>
                 </div>
 
-                <div className="group bg-gradient-to-br from-neutral-50 to-neutral-100 rounded-3xl shadow-xl hover:shadow-2xl p-8 border border-slate-200 transition-all duration-300 hover:transform hover:-translate-y-1">
-                  <div className="flex items-center">
-                    <div className="flex-1">
-                      <p className="text-xs font-normal text-black uppercase tracking-wider mb-2">
+                <div className="group bg-white rounded-2xl sm:rounded-3xl shadow-lg hover:shadow-xl p-6 sm:p-8 border border-gray-200 transition-all duration-300 hover:transform hover:-translate-y-1">
+                  <div className="flex items-center justify-between sm:flex-col sm:items-start">
+                    <div className="flex-1 sm:w-full">
+                      <p className="text-xs font-medium text-gray-600 uppercase tracking-wider mb-2">
                         Total Tasks
                       </p>
-                      <p className="text-4xl font-normal text-black">
+                      <p className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900">
                         {analytics.overview.totalTasks}
                       </p>
                     </div>
-                    <div className="w-14 h-14 bg-gradient-to-br from-emerald-700 to-emerald-900 rounded-2xl flex items-center justify-center mb-2 group-hover:scale-110 transition-transform duration-300">
+                    <div className="w-12 h-12 sm:w-14 sm:h-14 bg-gradient-to-br from-emerald-500 to-emerald-700 rounded-xl sm:rounded-2xl flex items-center justify-center sm:mt-4 group-hover:scale-110 transition-transform duration-300">
                       <svg
-                        className="w-8 h-8 text-white"
+                        className="w-6 h-6 sm:w-8 sm:h-8 text-white"
                         fill="none"
                         stroke="currentColor"
                         viewBox="0 0 24 24"
@@ -249,23 +249,23 @@ export default function Dashboard() {
                   </div>
                 </div>
 
-                <div className="group bg-gradient-to-br from-neutral-50 to-neutral-100 rounded-3xl shadow-xl hover:shadow-2xl p-8 border border-slate-200 transition-all duration-300 hover:transform hover:-translate-y-1">
-                  <div className="flex items-center">
-                    <div className="flex-1">
-                      <p className="text-xs font-normal text-black uppercase tracking-wider mb-2">
+                <div className="group bg-white rounded-2xl sm:rounded-3xl shadow-lg hover:shadow-xl p-6 sm:p-8 border border-gray-200 transition-all duration-300 hover:transform hover:-translate-y-1">
+                  <div className="flex items-center justify-between sm:flex-col sm:items-start">
+                    <div className="flex-1 sm:w-full">
+                      <p className="text-xs font-medium text-gray-600 uppercase tracking-wider mb-2">
                         Completed Tasks
                       </p>
-                      <p className="text-4xl font-normal text-black">
+                      <p className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900">
                         {analytics.overview.completedTasks}
                       </p>
-                      <p className="text-xs text-black mt-2 font-normal">
+                      <p className="text-xs text-gray-600 mt-2 font-medium">
                         {analytics.overview.completionRate.toFixed(1)}%
                         completion rate
                       </p>
                     </div>
-                    <div className="w-14 h-14 bg-gradient-to-br from-green-700 to-green-900 rounded-2xl flex items-center justify-center mb-2 group-hover:scale-110 transition-transform duration-300">
+                    <div className="w-12 h-12 sm:w-14 sm:h-14 bg-gradient-to-br from-green-500 to-green-700 rounded-xl sm:rounded-2xl flex items-center justify-center sm:mt-4 group-hover:scale-110 transition-transform duration-300">
                       <svg
-                        className="w-8 h-8 text-white"
+                        className="w-6 h-6 sm:w-8 sm:h-8 text-white"
                         fill="none"
                         stroke="currentColor"
                         viewBox="0 0 24 24"
@@ -281,19 +281,19 @@ export default function Dashboard() {
                   </div>
                 </div>
 
-                <div className="group bg-gradient-to-br from-neutral-50 to-neutral-100 rounded-3xl shadow-xl hover:shadow-2xl p-8 border border-slate-200 transition-all duration-300 hover:transform hover:-translate-y-1">
-                  <div className="flex items-center">
-                    <div className="flex-1">
-                      <p className="text-xs font-normal text-black uppercase tracking-wider mb-2">
+                <div className="group bg-white rounded-2xl sm:rounded-3xl shadow-lg hover:shadow-xl p-6 sm:p-8 border border-gray-200 transition-all duration-300 hover:transform hover:-translate-y-1">
+                  <div className="flex items-center justify-between sm:flex-col sm:items-start">
+                    <div className="flex-1 sm:w-full">
+                      <p className="text-xs font-medium text-gray-600 uppercase tracking-wider mb-2">
                         Overdue Tasks
                       </p>
-                      <p className="text-4xl font-normal text-black">
+                      <p className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900">
                         {analytics.overview.overdueTasks}
                       </p>
                     </div>
-                    <div className="w-14 h-14 bg-gradient-to-br from-red-700 to-red-900 rounded-2xl flex items-center justify-center mb-2 group-hover:scale-110 transition-transform duration-300">
+                    <div className="w-12 h-12 sm:w-14 sm:h-14 bg-gradient-to-br from-red-500 to-red-700 rounded-xl sm:rounded-2xl flex items-center justify-center sm:mt-4 group-hover:scale-110 transition-transform duration-300">
                       <svg
-                        className="w-8 h-8 text-white"
+                        className="w-6 h-6 sm:w-8 sm:h-8 text-white"
                         fill="none"
                         stroke="currentColor"
                         viewBox="0 0 24 24"
@@ -311,13 +311,13 @@ export default function Dashboard() {
               </div>
 
               {/* Analytics Section - Detailed Breakdowns */}
-              <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-12">
+              <div className="grid grid-cols-1 xl:grid-cols-3 gap-6 sm:gap-8 mb-8 sm:mb-12">
                 {/* Task Status Chart with Details */}
-                <div className="bg-gradient-to-br from-neutral-50 to-neutral-100 rounded-3xl shadow-xl p-8 border border-slate-200">
-                  <h3 className="text-xl font-normal text-black mb-6 flex items-center">
-                    <div className="w-8 h-8 bg-gradient-to-br from-indigo-700 to-purple-700 rounded-lg flex items-center justify-center mr-3">
+                <div className="bg-white rounded-2xl sm:rounded-3xl shadow-lg p-6 sm:p-8 border border-gray-200">
+                  <h3 className="text-lg sm:text-xl font-semibold text-gray-900 mb-4 sm:mb-6 flex items-center">
+                    <div className="w-6 h-6 sm:w-8 sm:h-8 bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg flex items-center justify-center mr-3">
                       <svg
-                        className="w-4 h-4 text-white"
+                        className="w-3 h-3 sm:w-4 sm:h-4 text-white"
                         fill="none"
                         stroke="currentColor"
                         viewBox="0 0 24 24"
@@ -391,13 +391,13 @@ export default function Dashboard() {
                 </div>
 
                 {/* Priority Distribution with Details */}
-                <div className="bg-gradient-to-br from-neutral-50 to-neutral-100 rounded-3xl shadow-xl p-8 border border-slate-200">
-                  <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-3">
-                    <span className="inline-flex items-center justify-center w-8 h-8 rounded-full bg-gradient-to-br from-yellow-400 to-red-500">
-                      <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <div className="bg-white rounded-2xl sm:rounded-3xl shadow-lg p-6 sm:p-8 border border-gray-200">
+                  <h3 className="text-lg sm:text-xl font-semibold text-gray-900 mb-4 sm:mb-6 flex items-center">
+                    <div className="w-6 h-6 sm:w-8 sm:h-8 bg-gradient-to-br from-yellow-500 to-orange-600 rounded-lg flex items-center justify-center mr-3">
+                      <svg className="w-3 h-3 sm:w-4 sm:h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                       </svg>
-                    </span>
+                    </div>
                     Tasks by Priority
                   </h3>
                   <div className="space-y-4">
@@ -452,11 +452,11 @@ export default function Dashboard() {
                 </div>
 
                 {/* Project Status with Details */}
-                <div className="bg-gradient-to-br from-neutral-50 to-neutral-100 rounded-3xl shadow-xl p-8 border border-slate-200">
-                  <h3 className="text-xl font-normal text-black mb-6 flex items-center">
-                    <div className="w-8 h-8 bg-gradient-to-br from-emerald-700 to-teal-700 rounded-lg flex items-center justify-center mr-3">
+                <div className="bg-white rounded-2xl sm:rounded-3xl shadow-lg p-6 sm:p-8 border border-gray-200">
+                  <h3 className="text-lg sm:text-xl font-semibold text-gray-900 mb-4 sm:mb-6 flex items-center">
+                    <div className="w-6 h-6 sm:w-8 sm:h-8 bg-gradient-to-br from-emerald-500 to-teal-600 rounded-lg flex items-center justify-center mr-3">
                       <svg
-                        className="w-4 h-4 text-white"
+                        className="w-3 h-3 sm:w-4 sm:h-4 text-white"
                         fill="none"
                         stroke="currentColor"
                         viewBox="0 0 24 24"
@@ -525,12 +525,12 @@ export default function Dashboard() {
 
               {/* Team Workload (for admins and managers) */}
               {analytics.teamWorkload && analytics.teamWorkload.length > 0 && (
-                <div className="bg-gradient-to-br from-neutral-50 to-neutral-100 rounded-3xl shadow-xl border border-slate-200 mb-12">
-                  <div className="px-8 py-6 border-b border-slate-200">
-                    <h3 className="text-xl font-normal text-black flex items-center">
-                      <div className="w-8 h-8 bg-gradient-to-br from-violet-700 to-purple-700 rounded-lg flex items-center justify-center mr-3">
+                <div className="bg-white rounded-2xl sm:rounded-3xl shadow-lg border border-gray-200 mb-8 sm:mb-12">
+                  <div className="px-4 sm:px-6 lg:px-8 py-4 sm:py-6 border-b border-gray-200">
+                    <h3 className="text-lg sm:text-xl font-semibold text-gray-900 flex items-center">
+                      <div className="w-6 h-6 sm:w-8 sm:h-8 bg-gradient-to-br from-violet-500 to-purple-600 rounded-lg flex items-center justify-center mr-3">
                         <svg
-                          className="w-4 h-4 text-white"
+                          className="w-3 h-3 sm:w-4 sm:h-4 text-white"
                           fill="none"
                           stroke="currentColor"
                           viewBox="0 0 24 24"
@@ -547,62 +547,62 @@ export default function Dashboard() {
                     </h3>
                   </div>
                   <div className="overflow-x-auto">
-                    <table className="min-w-full divide-y divide-slate-200">
-                      <thead className="bg-neutral-100/80">
+                    <table className="min-w-full divide-y divide-gray-200">
+                      <thead className="bg-gray-50">
                         <tr>
-                          <th className="px-8 py-4 text-left text-xs font-normal text-black uppercase tracking-wider">
+                          <th className="px-4 sm:px-6 lg:px-8 py-3 sm:py-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                             Team Member
                           </th>
-                          <th className="px-6 py-4 text-center text-xs font-normal text-black uppercase tracking-wider">
+                          <th className="hidden sm:table-cell px-6 py-3 sm:py-4 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
                             Total Tasks
                           </th>
-                          <th className="px-6 py-4 text-center text-xs font-normal text-black uppercase tracking-wider">
+                          <th className="px-4 sm:px-6 py-3 sm:py-4 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
                             In Progress
                           </th>
-                          <th className="px-6 py-4 text-center text-xs font-normal text-black uppercase tracking-wider">
+                          <th className="px-4 sm:px-6 py-3 sm:py-4 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
                             Completed
                           </th>
-                          <th className="px-6 py-4 text-center text-xs font-normal text-black uppercase tracking-wider">
+                          <th className="hidden md:table-cell px-6 py-3 sm:py-4 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
                             Overdue
                           </th>
-                          <th className="px-6 py-4 text-center text-xs font-normal text-black uppercase tracking-wider">
+                          <th className="px-4 sm:px-6 py-3 sm:py-4 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
                             Completion Rate
                           </th>
                         </tr>
                       </thead>
-                      <tbody className="bg-neutral-50/60 divide-y divide-slate-200/30">
+                      <tbody className="bg-white divide-y divide-gray-200">
                         {analytics.teamWorkload.map((member) => (
-                          <tr key={member.userId}>
-                            <td className="px-6 py-4 whitespace-nowrap">
+                          <tr key={member.userId} className="hover:bg-gray-50">
+                            <td className="px-4 sm:px-6 lg:px-8 py-4 whitespace-nowrap">
                               <div>
                                 <div className="text-sm font-medium text-gray-900">
                                   {member.userName}
                                 </div>
-                                <div className="text-sm text-gray-500">
+                                <div className="text-xs sm:text-sm text-gray-500">
                                   {member.userEmail}
                                 </div>
                               </div>
                             </td>
-                            <td className="px-6 py-4 whitespace-nowrap text-center text-sm text-gray-900">
+                            <td className="hidden sm:table-cell px-6 py-4 whitespace-nowrap text-center text-sm text-gray-900">
                               {member.totalTasks}
                             </td>
-                            <td className="px-6 py-4 whitespace-nowrap text-center text-sm text-blue-600">
+                            <td className="px-4 sm:px-6 py-4 whitespace-nowrap text-center text-sm text-blue-600 font-medium">
                               {member.inProgressTasks}
                             </td>
-                            <td className="px-6 py-4 whitespace-nowrap text-center text-sm text-green-600">
+                            <td className="px-4 sm:px-6 py-4 whitespace-nowrap text-center text-sm text-green-600 font-medium">
                               {member.completedTasks}
                             </td>
-                            <td className="px-6 py-4 whitespace-nowrap text-center text-sm text-red-600">
+                            <td className="hidden md:table-cell px-6 py-4 whitespace-nowrap text-center text-sm text-red-600 font-medium">
                               {member.overdueTasks}
                             </td>
-                            <td className="px-6 py-4 whitespace-nowrap text-center">
+                            <td className="px-4 sm:px-6 py-4 whitespace-nowrap text-center">
                               <span
-                                className={`text-sm font-medium ${
+                                className={`text-sm font-semibold px-2 py-1 rounded-full ${
                                   member.completionRate >= 80
-                                    ? "text-green-600"
+                                    ? "text-green-700 bg-green-100"
                                     : member.completionRate >= 50
-                                    ? "text-yellow-600"
-                                    : "text-red-600"
+                                    ? "text-yellow-700 bg-yellow-100"
+                                    : "text-red-700 bg-red-100"
                                 }`}
                               >
                                 {member.completionRate.toFixed(1)}%
@@ -618,11 +618,11 @@ export default function Dashboard() {
             </>
           )}
           {/* Analytics Line Chart Section */}
-          <div className="bg-white rounded-lg shadow-sm border border-gray-200 mb-8 p-8">
-            <h3 className="text-lg font-semibold text-gray-900 mb-6 text-center">
+          <div className="bg-white rounded-2xl sm:rounded-3xl shadow-lg border border-gray-200 mb-8 sm:mb-12 p-4 sm:p-6 lg:p-8">
+            <h3 className="text-lg sm:text-xl font-semibold text-gray-900 mb-4 sm:mb-6 text-center">
               Analytics Overview
             </h3>
-            <div className="w-full h-[320px]">
+            <div className="w-full h-[250px] sm:h-[300px] lg:h-[320px]">
               {/* Line chart for analytics */}
               <DashboardLineChart />
             </div>
