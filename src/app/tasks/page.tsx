@@ -634,27 +634,32 @@ function TaskListView({
               
               <div className="flex flex-wrap items-center gap-2 mb-3">
                 {canEditTask(task) ? (
-                  <select
-                    value={task.status}
-                    onChange={(e) => {
-                      e.stopPropagation();
-                      updateTaskStatus(task._id, e.target.value as TaskStatus);
-                    }}
-                    onClick={(e) => e.stopPropagation()}
-                    className={`text-xs font-semibold px-2 py-1 rounded-full border-2 focus:ring-2 focus:ring-blue-500 transition-all appearance-none cursor-pointer ${getStatusColor(
-                      task.status
-                    )}`}
-                  >
-                    <option value="todo">To Do</option>
-                    <option value="in_progress">In Progress</option>
-                    <option value="review">In Review</option>
-                    <option value="testing">Testing</option>
-                    <option value="completed">Completed</option>
-                    <option value="blocked">Blocked</option>
-                  </select>
+                  <div className="relative inline-block">
+                    <select
+                      value={task.status}
+                      onChange={(e) => {
+                        e.stopPropagation();
+                        updateTaskStatus(task._id, e.target.value as TaskStatus);
+                      }}
+                      onClick={(e) => e.stopPropagation()}
+                      className={`text-xs sm:text-sm font-bold px-3 pr-8 py-2 rounded-full border-2 focus:ring-2 focus:ring-blue-500 focus:outline-none transition-all appearance-none cursor-pointer shadow-sm hover:shadow-md ${getStatusColor(
+                        task.status
+                      )}`}
+                    >
+                      <option value="todo">To Do</option>
+                      <option value="in_progress">In Progress</option>
+                      <option value="review">In Review</option>
+                      <option value="testing">Testing</option>
+                      <option value="completed">Completed</option>
+                      <option value="blocked">Blocked</option>
+                    </select>
+                    <svg className="pointer-events-none absolute right-2 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-900 drop-shadow-sm" viewBox="0 0 20 20" fill="currentColor">
+                      <path fillRule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clipRule="evenodd" />
+                    </svg>
+                  </div>
                 ) : (
                   <span
-                    className={`text-xs font-semibold px-2 py-1 rounded-full border-2 ${getStatusColor(
+                    className={`text-xs sm:text-sm font-bold px-3 py-2 rounded-full border-2 shadow-sm ${getStatusColor(
                       task.status
                     )}`}
                   >
@@ -662,7 +667,7 @@ function TaskListView({
                   </span>
                 )}
                 <span
-                  className={`inline-flex items-center px-2 py-1 rounded-full text-xs font-bold border-2 ${getPriorityColor(
+                  className={`inline-flex items-center px-3 py-2 rounded-full text-xs sm:text-sm font-bold border-2 shadow-sm uppercase tracking-wide ${getPriorityColor(
                     task.priority
                   )}`}
                 >
@@ -778,11 +783,11 @@ function TaskListView({
                           updateTaskStatus(task._id, e.target.value as TaskStatus);
                         }}
                         onClick={(e) => e.stopPropagation()}
-                        className={`text-xs font-semibold px-3 pr-8 py-1.5 rounded-full border-2 focus:ring-2 focus:ring-blue-500 transition-all appearance-none cursor-pointer ${getStatusColor(
+                        className={`text-xs sm:text-sm font-bold px-3 pr-9 py-2 rounded-full border-2 focus:ring-2 focus:ring-blue-500 focus:outline-none transition-all appearance-none cursor-pointer shadow-sm hover:shadow-md ${getStatusColor(
                           task.status
                         )}`}
                         title="Update task status"
-                        style={{ minWidth: 110 }}
+                        style={{ minWidth: 130 }}
                       >
                         <option value="todo">To Do</option>
                         <option value="in_progress">In Progress</option>
@@ -792,11 +797,13 @@ function TaskListView({
                         <option value="blocked">Blocked</option>
                       </select>
                       {/* Custom arrow for select */}
-                      <svg className="pointer-events-none absolute right-2 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-800" viewBox="0 0 20 20" fill="currentColor"><path d="M7 8l3 3 3-3" /></svg>
+                      <svg className="pointer-events-none absolute right-2 top-1/2 -translate-y-1/2 w-4 h-4 sm:w-5 sm:h-5 text-gray-900 drop-shadow-sm" viewBox="0 0 20 20" fill="currentColor">
+                        <path fillRule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clipRule="evenodd" />
+                      </svg>
                     </div>
                   ) : (
                     <span
-                      className={`text-xs font-semibold px-3 py-1.5 rounded-full border-2 ${getStatusColor(
+                      className={`text-xs sm:text-sm font-bold px-3 py-2 rounded-full border-2 shadow-sm ${getStatusColor(
                         task.status
                       )}`}
                     >
@@ -804,7 +811,7 @@ function TaskListView({
                     </span>
                   )}
                   <span
-                    className={`inline-flex items-center px-3 py-1.5 rounded-full text-xs font-bold border-2 ${getPriorityColor(
+                    className={`inline-flex items-center px-3 py-2 rounded-full text-xs sm:text-sm font-bold border-2 shadow-sm uppercase tracking-wide ${getPriorityColor(
                       task.priority
                     )}`}
                   >
