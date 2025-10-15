@@ -78,7 +78,7 @@ export function enumToDisplayText(value: string): string {
  * Get priority color class with enhanced visibility - black text for maximum contrast
  */
 export function getPriorityColor(priority: string): string {
-  switch (priority.toLowerCase()) {
+    switch (priority.toLowerCase()) {
     case 'low':
       return 'text-black bg-green-200 border-green-400';
     case 'medium':

@@ -330,9 +330,10 @@ export default function ProjectsPage() {
                                   e.target.value as ProjectStatus
                                 )
                               }
-                              className={`px-3 sm:px-4 pr-8 text-black sm:pr-10 py-2 rounded-full text-xs sm:text-sm font-bold border-2 focus:ring-2 focus:ring-blue-500 focus:outline-none transition-all appearance-none cursor-pointer shadow-sm hover:shadow-md ${getStatusColor(
+                              className={`px-3 sm:px-4 pr-8 sm:pr-10 py-2 rounded-full text-xs sm:text-sm font-bold border-2 focus:ring-2 focus:ring-blue-500 focus:outline-none transition-all cursor-pointer shadow-sm hover:shadow-md ${getStatusColor(
                                 project.status
                               )}`}
+                              style={{ appearance: 'none', WebkitAppearance: 'none', MozAppearance: 'none' }}
                               title="Update project status"
                             >
                               <option value="planning">Planning</option>
@@ -342,9 +343,11 @@ export default function ProjectsPage() {
                               <option value="on_hold">On Hold</option>
                             </select>
                             {/* Custom arrow for select */}
-                            <svg className="pointer-events-none absolute right-2 sm:right-3 top-1/2 -translate-y-1/2 w-4 h-4 sm:w-5 sm:h-5 text-gray-900 drop-shadow-sm" viewBox="0 0 20 20" fill="currentColor">
-                              <path fillRule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clipRule="evenodd" />
-                            </svg>
+                            <div className="pointer-events-none absolute right-2 sm:right-3 top-1/2 -translate-y-1/2">
+                              <svg className="w-4 h-4 sm:w-5 sm:h-5 text-gray-900 drop-shadow-sm" viewBox="0 0 20 20" fill="currentColor">
+                                <path fillRule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clipRule="evenodd" />
+                              </svg>
+                            </div>
                           </div>
                         ) : (
                           <span
@@ -915,23 +918,84 @@ function EditProjectModal({
       return;
     }
 
+    // Validate title length
+    if (title.trim().length > 200) {
+      toast.error("Project title cannot exceed 200 characters");
+      return;
+    }
+
+    // Validate description length
+    if (description.length > 2000) {
+      toast.error("Project description cannot exceed 2000 characters");
+      return;
+    }
+
+    // Validate deadline is a valid date
+    const deadlineDate = new Date(deadline);
+    if (isNaN(deadlineDate.getTime())) {
+      toast.error("Please provide a valid deadline date");
+      return;
+    }
+
+    // Validate estimated hours
+    if (estimatedHours && parseFloat(estimatedHours) < 0) {
+      toast.error("Estimated hours cannot be negative");
+      return;
+    }
+
+    // Validate tags
+    const tagArray = tags.split(",").map((t) => t.trim()).filter(Boolean);
+    for (const tag of tagArray) {
+      if (tag.length > 50) {
+        toast.error(`Tag "${tag}" cannot exceed 50 characters`);
+        return;
+      }
+    }
+
     try {
       setIsSubmitting(true);
-      await apiClient.updateProject(project._id, {
-        title,
-        description,
-        deadline,
+      
+      // Prepare the data payload
+      const currentManagerId = typeof project.managerId === 'object' ? project.managerId._id : project.managerId;
+      const updateData = {
+        title: title.trim(),
+        description: description.trim() || '',
+        deadline: deadlineDate.toISOString(),
         priority,
         status,
+        managerId: currentManagerId,
         teamMembers: selectedTeamMembers,
         estimatedHours: estimatedHours ? parseFloat(estimatedHours) : undefined,
-        tags: tags.split(",").map((t) => t.trim()).filter(Boolean),
-      });
+        tags: tagArray,
+      };
+
+      console.log('Sending update data:', updateData);
+      
+      await apiClient.updateProject(project._id, updateData);
       toast.success("Project updated successfully");
       onSuccess();
     } catch (err: any) {
-      console.error(err);
-      toast.error(err?.response?.data?.message || "Failed to update project");
+      console.error('Update project error:', err);
+      console.error('Error response:', err?.response?.data);
+      console.error('Error response errors:', err?.response?.data?.errors);
+      
+      // Log the actual error details
+      if (err?.response?.data?.errors && Array.isArray(err?.response?.data?.errors)) {
+        err.response.data.errors.forEach((error: any, index: number) => {
+          console.error(`Validation Error ${index + 1}:`, error);
+          console.error(`Error field:`, error.field || error.path);
+          console.error(`Error message:`, error.message);
+          console.error(`Error value:`, error.value);
+        });
+      }
+      
+      // More detailed error message
+      const errorMessage = err?.response?.data?.errors?.length > 0 ? 
+                          err?.response?.data?.errors.map((e: any) => `${e.field || e.path}: ${e.message || e}`).join(', ') :
+                          err?.response?.data?.message || 
+                          err?.message || 
+                          "Failed to update project";
+      toast.error(errorMessage);
     } finally {
       setIsSubmitting(false);
     }
