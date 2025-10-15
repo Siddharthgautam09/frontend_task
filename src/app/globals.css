@@ -1,0 +1,256 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f5f9;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+/* Custom focus styles */
+.focus-ring {
+  @apply focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2;
+}
+
+/* Button base styles */
+.btn-base {
+  @apply inline-flex items-center justify-center rounded-lg font-medium transition-all duration-200 focus-ring disabled:opacity-50 disabled:cursor-not-allowed;
+}
+
+.btn-primary {
+  @apply btn-base bg-primary-600 text-white hover:bg-primary-700 active:bg-primary-800;
+}
+
+.btn-secondary {
+  @apply btn-base bg-secondary-100 text-secondary-900 hover:bg-secondary-200 active:bg-secondary-300;
+}
+
+.btn-success {
+  @apply btn-base bg-success-600 text-white hover:bg-success-700 active:bg-success-800;
+}
+
+.btn-warning {
+  @apply btn-base bg-warning-600 text-white hover:bg-warning-700 active:bg-warning-800;
+}
+
+.btn-danger {
+  @apply btn-base bg-danger-600 text-white hover:bg-danger-700 active:bg-danger-800;
+}
+
+.btn-ghost {
+  @apply btn-base text-secondary-700 hover:bg-secondary-100 active:bg-secondary-200;
+}
+
+.btn-outline {
+  @apply btn-base border border-secondary-300 text-secondary-700 hover:bg-secondary-50 active:bg-secondary-100;
+}
+
+/* Input base styles */
+.input-base {
+  @apply block w-full rounded-lg border border-secondary-300 px-3 py-2 text-secondary-900 placeholder-secondary-500 focus-ring sm:text-sm;
+}
+
+.input-error {
+  @apply border-danger-300 focus:border-danger-500 focus:ring-danger-500;
+}
+
+/* Card styles */
+.card {
+  @apply bg-white rounded-xl shadow-soft border border-secondary-200;
+}
+
+.card-header {
+  @apply px-6 py-4 border-b border-secondary-200;
+}
+
+.card-body {
+  @apply p-6;
+}
+
+.card-footer {
+  @apply px-6 py-4 border-t border-secondary-200 bg-secondary-50 rounded-b-xl;
+}
+
+/* Badge styles */
+.badge {
+  @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium;
+}
+
+.badge-primary {
+  @apply badge bg-primary-100 text-primary-800;
+}
+
+.badge-secondary {
+  @apply badge bg-secondary-100 text-secondary-800;
+}
+
+.badge-success {
+  @apply badge bg-success-100 text-success-800;
+}
+
+.badge-warning {
+  @apply badge bg-warning-100 text-warning-800;
+}
+
+.badge-danger {
+  @apply badge bg-danger-100 text-danger-800;
+}
+
+/* Animation utilities */
+.animate-fade-in {
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+.animate-slide-in {
+  animation: slideIn 0.3s ease-out;
+}
+
+.animate-bounce-light {
+  animation: bounce 1s infinite;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideIn {
+  from { 
+    transform: translateY(-10px); 
+    opacity: 0; 
+  }
+  to { 
+    transform: translateY(0); 
+    opacity: 1; 
+  }
+}
+
+/* Loading spinner */
+.spinner {
+  @apply inline-block w-4 h-4 border-2 border-current border-t-transparent rounded-full animate-spin;
+}
+
+/* Gradient backgrounds */
+.gradient-primary {
+  background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+}
+
+.gradient-success {
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+}
+
+.gradient-warning {
+  background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+}
+
+.gradient-danger {
+  background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+}
+
+/* Dark mode utilities */
+.dark .dark\:bg-dark {
+  @apply bg-secondary-900;
+}
+
+.dark .dark\:text-light {
+  @apply text-secondary-100;
+}
+
+.dark .dark\:border-dark {
+  @apply border-secondary-700;
+}
+
+/* Responsive table */
+.table-responsive {
+  @apply overflow-x-auto;
+}
+
+.table-responsive table {
+  @apply min-w-full divide-y divide-secondary-200;
+}
+
+.table-responsive thead {
+  @apply bg-secondary-50;
+}
+
+.table-responsive th {
+  @apply px-6 py-3 text-left text-xs font-medium text-secondary-500 uppercase tracking-wider;
+}
+
+.table-responsive td {
+  @apply px-6 py-4 whitespace-nowrap text-sm text-secondary-900;
+}
+
+.table-responsive tbody tr {
+  @apply bg-white border-b border-secondary-200 hover:bg-secondary-50 transition-colors;
+}
+
+/* Custom progress bar */
+.progress-bar {
+  @apply w-full bg-secondary-200 rounded-full h-2;
+}
+
+.progress-fill {
+  @apply h-2 bg-primary-600 rounded-full transition-all duration-300;
+}
+
+/* Skeleton loading */
+.skeleton {
+  @apply animate-pulse bg-secondary-200 rounded;
+}
+
+.skeleton-text {
+  @apply skeleton h-4 w-full mb-2;
+}
+
+.skeleton-title {
+  @apply skeleton h-6 w-3/4 mb-4;
+}
+
+.skeleton-avatar {
+  @apply skeleton h-10 w-10 rounded-full;
+}
+
+/* Hover effects */
+.hover-lift {
+  @apply transition-transform duration-200 hover:scale-105;
+}
+
+.hover-shadow {
+  @apply transition-shadow duration-200 hover:shadow-medium;
+}
+
+/* Status indicator */
+.status-indicator {
+  @apply inline-block w-2 h-2 rounded-full mr-2;
+}
+
+.status-online {
+  @apply status-indicator bg-success-500;
+}
+
+.status-offline {
+  @apply status-indicator bg-secondary-400;
+}
+
+.status-busy {
+  @apply status-indicator bg-warning-500;
+}
+
+.status-away {
+  @apply status-indicator bg-danger-500;
+}
