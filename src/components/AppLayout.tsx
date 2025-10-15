@@ -24,6 +24,7 @@ export default function AppLayout({ children }: AppLayoutProps) {
   const router = useRouter();
   const pathname = usePathname();
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [searchQuery, setSearchQuery] = useState('');
 
   const handleLogout = async () => {
     try {
@@ -33,6 +34,14 @@ export default function AppLayout({ children }: AppLayoutProps) {
     } catch (error) {
       console.error('Logout failed:', error);
       toast.error('Failed to logout');
+    }
+  };
+
+  const handleSearch = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (searchQuery.trim()) {
+      // Navigate to tasks page with search query
+      router.push(`/tasks?search=${encodeURIComponent(searchQuery.trim())}` as any);
     }
   };
 
@@ -231,24 +240,40 @@ export default function AppLayout({ children }: AppLayoutProps) {
                 </span>
               </div>
               <div className="flex-1 flex justify-center">
-                <input
-                  type="text"
-                  placeholder="Search..."
-                  className="w-full max-w-xs px-3 py-2 text-sm rounded-xl border border-blue-300/60 bg-blue-800/50 text-white placeholder-blue-200 focus:outline-none focus:ring-2 focus:ring-blue-400 shadow"
-                />
+                <form onSubmit={handleSearch} className="w-full max-w-xs">
+                  <input
+                    type="text"
+                    placeholder="Search tasks..."
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value)}
+                    className="w-full px-3 py-2 text-sm rounded-xl border border-blue-300/60 bg-blue-800/50 text-white placeholder-blue-200 focus:outline-none focus:ring-2 focus:ring-blue-400 shadow"
+                  />
+                </form>
               </div>
               <div className="flex items-center gap-2 sm:gap-4">
-                <button className="rounded-full bg-blue-800/50 p-2 hover:bg-blue-900/50 transition">
+                <button 
+                  onClick={() => router.push('/analytics' as any)}
+                  className="rounded-full bg-blue-800/50 p-2 hover:bg-blue-900/50 transition"
+                  title="Analytics"
+                >
                   <BarChart3 className="w-4 h-4 sm:w-5 sm:h-5 text-white" />
                 </button>
-                <button className="rounded-full bg-blue-800/50 p-2 hover:bg-blue-900/50 transition">
+                <button 
+                  onClick={() => router.push('/profile' as any)}
+                  className="rounded-full bg-blue-800/50 p-2 hover:bg-blue-900/50 transition"
+                  title="Profile"
+                >
                   <User className="w-4 h-4 sm:w-5 sm:h-5 text-white" />
                 </button>
-                <div className="h-8 w-8 sm:h-10 sm:w-10 rounded-full bg-blue-700 flex items-center justify-center shadow-lg">
+                <button
+                  onClick={() => router.push('/profile' as any)}
+                  className="h-8 w-8 sm:h-10 sm:w-10 rounded-full bg-blue-700 flex items-center justify-center shadow-lg hover:bg-blue-800 transition"
+                  title="Profile"
+                >
                   <span className="text-sm sm:text-base font-bold text-white">
                     {user.firstName.charAt(0)}{user.lastName.charAt(0)}
                   </span>
-                </div>
+                </button>
               </div>
             </div>
           </div>
