@@ -162,17 +162,17 @@ export default function Dashboard() {
 
   return (
     <AppLayout>
-      <div className="bg-gradient-to-r from-slate-900 via-indigo-950 to-gray-900 min-h-screen">
-        <header className="bg-gradient-to-r from-slate-900 via-indigo-950 to-gray-900 shadow-lg border-b border-slate-800/60">
+      <div className="bg-gradient-to-r from-blue-200 via-blue-400 to-blue-600 min-h-screen">
+        <header className="bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 shadow-lg border-b border-blue-300/60">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex justify-between items-center h-16">
               <div>
-                <h1 className="text-3xl font-bold  text-white bg-clip-text text-transparent w-full">
+                <h1 className="text-2xl sm:text-3xl font-bold text-white w-full">
                   Dashboard
                 </h1>
               </div>
-              <div className="flex items-center space-x-4">
-                <span className="px-3 py-1.5 bg-indigo-800 text-indigo-200 text-xs font-semibold rounded-full uppercase tracking-wide">
+              <div className="flex items-center space-x-2 sm:space-x-4">
+                <span className="px-2 py-1 sm:px-3 sm:py-1.5 bg-blue-800 text-white text-xs font-semibold rounded-full uppercase tracking-wide shadow-md">
                   {enumToDisplayText(user.role)}
                 </span>
               </div>
@@ -194,8 +194,8 @@ export default function Dashboard() {
               {/* Overview Cards */}
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 lg:gap-8 mb-8 sm:mb-12 mt-6 sm:mt-8">
                 <div className="group bg-white rounded-2xl sm:rounded-3xl shadow-lg hover:shadow-xl p-6 sm:p-8 border border-gray-200 transition-all duration-300 hover:transform hover:-translate-y-1">
-                  <div className="flex items-center justify-between sm:flex-col sm:items-start">
-                    <div className="flex-1 sm:w-full">
+                  <div className="flex flex-row items-center justify-between">
+                    <div className="flex flex-col flex-1">
                       <p className="text-xs font-medium text-gray-600 uppercase tracking-wider mb-2">
                         Total Projects
                       </p>
@@ -203,7 +203,7 @@ export default function Dashboard() {
                         {analytics.overview.totalProjects}
                       </p>
                     </div>
-                    <div className="w-12 h-12 sm:w-14 sm:h-14 bg-gradient-to-br from-blue-500 to-blue-700 rounded-xl sm:rounded-2xl flex items-center justify-center sm:mt-4 group-hover:scale-110 transition-transform duration-300">
+                    <div className="w-12 h-12 sm:w-14 sm:h-14 bg-gradient-to-br from-blue-500 to-blue-700 rounded-xl sm:rounded-2xl flex items-center justify-center ml-4 group-hover:scale-110 transition-transform duration-300">
                       <svg
                         className="w-6 h-6 sm:w-8 sm:h-8 text-white"
                         fill="none"
@@ -222,8 +222,8 @@ export default function Dashboard() {
                 </div>
 
                 <div className="group bg-white rounded-2xl sm:rounded-3xl shadow-lg hover:shadow-xl p-6 sm:p-8 border border-gray-200 transition-all duration-300 hover:transform hover:-translate-y-1">
-                  <div className="flex items-center justify-between sm:flex-col sm:items-start">
-                    <div className="flex-1 sm:w-full">
+                  <div className="flex flex-row items-center justify-between">
+                    <div className="flex flex-col flex-1">
                       <p className="text-xs font-medium text-gray-600 uppercase tracking-wider mb-2">
                         Total Tasks
                       </p>
@@ -231,7 +231,7 @@ export default function Dashboard() {
                         {analytics.overview.totalTasks}
                       </p>
                     </div>
-                    <div className="w-12 h-12 sm:w-14 sm:h-14 bg-gradient-to-br from-emerald-500 to-emerald-700 rounded-xl sm:rounded-2xl flex items-center justify-center sm:mt-4 group-hover:scale-110 transition-transform duration-300">
+                    <div className="w-12 h-12 sm:w-14 sm:h-14 bg-gradient-to-br from-emerald-500 to-emerald-700 rounded-xl sm:rounded-2xl flex items-center justify-center ml-4 group-hover:scale-110 transition-transform duration-300">
                       <svg
                         className="w-6 h-6 sm:w-8 sm:h-8 text-white"
                         fill="none"
@@ -250,8 +250,8 @@ export default function Dashboard() {
                 </div>
 
                 <div className="group bg-white rounded-2xl sm:rounded-3xl shadow-lg hover:shadow-xl p-6 sm:p-8 border border-gray-200 transition-all duration-300 hover:transform hover:-translate-y-1">
-                  <div className="flex items-center justify-between sm:flex-col sm:items-start">
-                    <div className="flex-1 sm:w-full">
+                  <div className="flex flex-row items-center justify-between">
+                    <div className="flex flex-col flex-1">
                       <p className="text-xs font-medium text-gray-600 uppercase tracking-wider mb-2">
                         Completed Tasks
                       </p>
@@ -263,7 +263,7 @@ export default function Dashboard() {
                         completion rate
                       </p>
                     </div>
-                    <div className="w-12 h-12 sm:w-14 sm:h-14 bg-gradient-to-br from-green-500 to-green-700 rounded-xl sm:rounded-2xl flex items-center justify-center sm:mt-4 group-hover:scale-110 transition-transform duration-300">
+                    <div className="w-12 h-12 sm:w-14 sm:h-14 bg-gradient-to-br from-green-500 to-green-700 rounded-xl sm:rounded-2xl flex items-center justify-center ml-4 group-hover:scale-110 transition-transform duration-300">
                       <svg
                         className="w-6 h-6 sm:w-8 sm:h-8 text-white"
                         fill="none"
@@ -282,8 +282,8 @@ export default function Dashboard() {
                 </div>
 
                 <div className="group bg-white rounded-2xl sm:rounded-3xl shadow-lg hover:shadow-xl p-6 sm:p-8 border border-gray-200 transition-all duration-300 hover:transform hover:-translate-y-1">
-                  <div className="flex items-center justify-between sm:flex-col sm:items-start">
-                    <div className="flex-1 sm:w-full">
+                  <div className="flex flex-row items-center justify-between">
+                    <div className="flex flex-col flex-1">
                       <p className="text-xs font-medium text-gray-600 uppercase tracking-wider mb-2">
                         Overdue Tasks
                       </p>
@@ -291,7 +291,7 @@ export default function Dashboard() {
                         {analytics.overview.overdueTasks}
                       </p>
                     </div>
-                    <div className="w-12 h-12 sm:w-14 sm:h-14 bg-gradient-to-br from-red-500 to-red-700 rounded-xl sm:rounded-2xl flex items-center justify-center sm:mt-4 group-hover:scale-110 transition-transform duration-300">
+                    <div className="w-12 h-12 sm:w-14 sm:h-14 bg-gradient-to-br from-red-500 to-red-700 rounded-xl sm:rounded-2xl flex items-center justify-center ml-4 group-hover:scale-110 transition-transform duration-300">
                       <svg
                         className="w-6 h-6 sm:w-8 sm:h-8 text-white"
                         fill="none"
