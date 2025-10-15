@@ -75,46 +75,46 @@ export function enumToDisplayText(value: string): string {
 }
 
 /**
- * Get priority color class
+ * Get priority color class with enhanced visibility
  */
 export function getPriorityColor(priority: string): string {
   switch (priority.toLowerCase()) {
     case 'low':
-      return 'text-green-600 bg-green-50 border-green-200';
+      return 'text-green-800 bg-green-100 border-green-400';
     case 'medium':
-      return 'text-yellow-600 bg-yellow-50 border-yellow-200';
+      return 'text-yellow-900 bg-yellow-100 border-yellow-400';
     case 'high':
-      return 'text-orange-600 bg-orange-50 border-orange-200';
+      return 'text-orange-900 bg-orange-100 border-orange-400';
     case 'critical':
     case 'urgent':
-      return 'text-red-600 bg-red-50 border-red-200';
+      return 'text-red-900 bg-red-100 border-red-400';
     default:
-      return 'text-gray-600 bg-gray-50 border-gray-200';
+      return 'text-gray-900 bg-gray-100 border-gray-400';
   }
 }
 
 /**
- * Get status color class
+ * Get status color class with enhanced visibility
  */
 export function getStatusColor(status: string): string {
   switch (status.toLowerCase()) {
     case 'planning':
     case 'todo':
-      return 'text-gray-600 bg-gray-50 border-gray-200';
+      return 'text-gray-900 bg-gray-100 border-gray-400';
     case 'in_progress':
-      return 'text-blue-600 bg-blue-50 border-blue-200';
+      return 'text-blue-900 bg-blue-100 border-blue-400';
     case 'review':
     case 'testing':
-      return 'text-yellow-600 bg-yellow-50 border-yellow-200';
+      return 'text-yellow-900 bg-yellow-100 border-yellow-400';
     case 'completed':
-      return 'text-green-600 bg-green-50 border-green-200';
+      return 'text-green-900 bg-green-100 border-green-400';
     case 'on_hold':
     case 'blocked':
-      return 'text-orange-600 bg-orange-50 border-orange-200';
+      return 'text-orange-900 bg-orange-100 border-orange-400';
     case 'cancelled':
-      return 'text-red-600 bg-red-50 border-red-200';
+      return 'text-red-900 bg-red-100 border-red-400';
     default:
-      return 'text-gray-600 bg-gray-50 border-gray-200';
+      return 'text-gray-900 bg-gray-100 border-gray-400';
   }
 }
 

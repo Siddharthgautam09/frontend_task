@@ -330,7 +330,7 @@ export default function ProjectsPage() {
                                   e.target.value as ProjectStatus
                                 )
                               }
-                              className={`px-2 sm:px-3 pr-6 sm:pr-8 py-1.5 rounded-full text-xs font-semibold border-2 focus:ring-2 focus:ring-blue-500 transition-all appearance-none cursor-pointer ${getStatusColor(
+                              className={`px-3 sm:px-4 pr-8 text-black sm:pr-10 py-2 rounded-full text-xs sm:text-sm font-bold border-2 focus:ring-2 focus:ring-blue-500 focus:outline-none transition-all appearance-none cursor-pointer shadow-sm hover:shadow-md ${getStatusColor(
                                 project.status
                               )}`}
                               title="Update project status"
@@ -342,11 +342,13 @@ export default function ProjectsPage() {
                               <option value="on_hold">On Hold</option>
                             </select>
                             {/* Custom arrow for select */}
-                            <svg className="pointer-events-none absolute right-1 sm:right-2 top-1/2 -translate-y-1/2 w-3 h-3 sm:w-4 sm:h-4 text-gray-800" viewBox="0 0 20 20" fill="currentColor"><path d="M7 8l3 3 3-3" /></svg>
+                            <svg className="pointer-events-none absolute right-2 sm:right-3 top-1/2 -translate-y-1/2 w-4 h-4 sm:w-5 sm:h-5 text-gray-900 drop-shadow-sm" viewBox="0 0 20 20" fill="currentColor">
+                              <path fillRule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clipRule="evenodd" />
+                            </svg>
                           </div>
                         ) : (
                           <span
-                            className={`px-2 sm:px-3 py-1.5 rounded-full text-xs font-semibold border-2 ${getStatusColor(
+                            className={`px-3 sm:px-4 py-2 rounded-full text-xs sm:text-sm font-bold border-2 shadow-sm ${getStatusColor(
                               project.status
                             )}`}
                           >
@@ -354,7 +356,7 @@ export default function ProjectsPage() {
                           </span>
                         )}
                         <span
-                          className={`px-2 sm:px-3 py-1.5 rounded-full text-xs font-bold text-black border-2 ${getPriorityColor(
+                          className={`px-3 sm:px-4 py-2 rounded-full text-xs sm:text-sm font-bold border-2 shadow-sm uppercase tracking-wide ${getPriorityColor(
                             project.priority
                           )}`}
                         >
