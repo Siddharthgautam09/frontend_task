@@ -201,8 +201,8 @@ export default function ProjectsPage() {
   if (authLoading || loading) {
     return (
       <AppLayout>
-        <div className="bg-gradient-to-br from-blue-200 via-blue-400 to-blue-600 min-h-screen flex items-center justify-center">
-          <div className="bg-white/90 backdrop-blur-sm rounded-2xl p-8 shadow-lg border border-white/20">
+        <div className="bg-white min-h-screen flex items-center justify-center">
+          <div className="bg-white/90 backdrop-blur-sm rounded-2xl p-8 shadow-lg border border-gray-200">
             <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto"></div>
             <p className="text-center text-gray-700 mt-4 font-medium">Loading projects...</p>
           </div>
@@ -217,7 +217,7 @@ export default function ProjectsPage() {
 
   return (
     <AppLayout>
-      <div className="bg-gradient-to-br from-blue-200 via-blue-400 to-blue-600 min-h-screen">
+      <div className="bg-white min-h-screen">
         <header className="bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 shadow-lg border-b border-blue-300/50">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center py-6 space-y-4 sm:space-y-0">
@@ -249,7 +249,7 @@ export default function ProjectsPage() {
 
         <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8 lg:py-12">
           {/* Filters */}
-          <div className="bg-white/90 backdrop-blur-sm rounded-2xl p-4 sm:p-6 mb-6 shadow-lg border border-white/20">
+          <div className="bg-gray-50 rounded-2xl p-4 sm:p-6 mb-6 shadow-sm border border-gray-200">
             <div className="flex flex-col space-y-4 lg:flex-row lg:items-center lg:justify-between lg:space-y-0">
               <div className="flex flex-col space-y-4 sm:flex-row sm:space-y-0 sm:space-x-4 flex-1">
                 <div className="relative flex-1 max-w-md">
@@ -286,7 +286,7 @@ export default function ProjectsPage() {
 
           {/* Projects Grid */}
           {filteredProjects.length === 0 ? (
-            <div className="bg-white/90 backdrop-blur-sm rounded-2xl shadow-lg p-8 sm:p-12 text-center border border-white/20">
+            <div className="bg-gray-50 rounded-2xl shadow-sm p-8 sm:p-12 text-center border border-gray-200">
               <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
                 <Users className="w-8 h-8 text-blue-600" />
               </div>
@@ -312,7 +312,7 @@ export default function ProjectsPage() {
               {filteredProjects.map((project) => (
                 <div
                   key={project._id}
-                  className="bg-white/90 backdrop-blur-sm rounded-2xl shadow-lg border border-white/20 p-4 sm:p-6 lg:p-7 hover:shadow-xl transition-all duration-200 hover:-translate-y-1 flex flex-col justify-between min-h-[320px] sm:min-h-[340px]"
+                  className="bg-white rounded-2xl shadow-sm border border-gray-200 p-4 sm:p-6 lg:p-7 hover:shadow-md transition-all duration-200 hover:-translate-y-1 flex flex-col justify-between min-h-[320px] sm:min-h-[340px]"
                 >
                   <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start mb-4 space-y-2 sm:space-y-0">
                     <div className="flex-1">
@@ -330,7 +330,7 @@ export default function ProjectsPage() {
                                   e.target.value as ProjectStatus
                                 )
                               }
-                              className={`px-2 sm:px-3 pr-6 sm:pr-8 py-1.5 rounded-full text-xs font-semibold border-0 focus:ring-2 focus:ring-blue-500 transition-all appearance-none ${getStatusColor(
+                              className={`px-2 sm:px-3 pr-6 sm:pr-8 py-1.5 rounded-full text-xs font-semibold border-2 focus:ring-2 focus:ring-blue-500 transition-all appearance-none cursor-pointer ${getStatusColor(
                                 project.status
                               )}`}
                               title="Update project status"
@@ -342,11 +342,11 @@ export default function ProjectsPage() {
                               <option value="on_hold">On Hold</option>
                             </select>
                             {/* Custom arrow for select */}
-                            <svg className="pointer-events-none absolute right-1 sm:right-2 top-1/2 -translate-y-1/2 w-3 h-3 sm:w-4 sm:h-4 text-gray-400" viewBox="0 0 20 20" fill="currentColor"><path d="M7 8l3 3 3-3" /></svg>
+                            <svg className="pointer-events-none absolute right-1 sm:right-2 top-1/2 -translate-y-1/2 w-3 h-3 sm:w-4 sm:h-4 text-gray-800" viewBox="0 0 20 20" fill="currentColor"><path d="M7 8l3 3 3-3" /></svg>
                           </div>
                         ) : (
                           <span
-                            className={`px-2 sm:px-3 py-1.5 rounded-full text-xs font-semibold ${getStatusColor(
+                            className={`px-2 sm:px-3 py-1.5 rounded-full text-xs font-semibold border-2 ${getStatusColor(
                               project.status
                             )}`}
                           >
@@ -354,9 +354,9 @@ export default function ProjectsPage() {
                           </span>
                         )}
                         <span
-                          className={`px-2 sm:px-3 py-1.5 rounded-full text-xs font-bold ${getPriorityColor(
+                          className={`px-2 sm:px-3 py-1.5 rounded-full text-xs font-bold text-black border-2 ${getPriorityColor(
                             project.priority
-                          )} text-gray-800`}
+                          )}`}
                         >
                           {enumToDisplayText(project.priority)}
                         </span>

@@ -267,8 +267,8 @@ export default function TasksPage() {
   if (authLoading || loading)
     return (
       <AppLayout>
-        <div className="bg-gradient-to-br from-blue-200 via-blue-400 to-blue-600 min-h-screen flex items-center justify-center">
-          <div className="bg-white/90 backdrop-blur-sm rounded-2xl p-8 shadow-lg border border-white/20">
+        <div className="bg-white min-h-screen flex items-center justify-center">
+          <div className="bg-white/90 backdrop-blur-sm rounded-2xl p-8 shadow-lg border border-gray-200">
             <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto"></div>
             <p className="text-center text-gray-700 mt-4 font-medium">Loading tasks...</p>
           </div>
@@ -331,7 +331,7 @@ export default function TasksPage() {
 
   return (
     <AppLayout>
-      <div className="bg-gradient-to-br from-blue-200 via-blue-400 to-blue-600 min-h-screen">
+      <div className="bg-white min-h-screen">
         {/* Header with Stats */}
         <header className="bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 shadow-lg border-b border-blue-300/50">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex flex-col gap-4">
@@ -363,7 +363,7 @@ export default function TasksPage() {
         {/* Toolbar and Filters */}
         <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-6 mt-4 mb-8">
-            <div className="bg-white/90 backdrop-blur-sm rounded-xl p-3 sm:p-4 border border-white/20 shadow-lg">
+            <div className="bg-gray-50 rounded-xl p-3 sm:p-4 border border-gray-200 shadow-sm">
               <div className="text-xs font-medium text-blue-700 uppercase tracking-wide">
                 Total Tasks
               </div>
@@ -371,7 +371,7 @@ export default function TasksPage() {
                 {stats.total}
               </div>
             </div>
-            <div className="bg-white/90 backdrop-blur-sm rounded-xl p-3 sm:p-4 border border-white/20 shadow-lg">
+            <div className="bg-gray-50 rounded-xl p-3 sm:p-4 border border-gray-200 shadow-sm">
               <div className="text-xs font-medium text-emerald-700 uppercase tracking-wide">
                 Completed
               </div>
@@ -379,7 +379,7 @@ export default function TasksPage() {
                 {stats.completed}
               </div>
             </div>
-            <div className="bg-white/90 backdrop-blur-sm rounded-xl p-3 sm:p-4 border border-white/20 shadow-lg">
+            <div className="bg-gray-50 rounded-xl p-3 sm:p-4 border border-gray-200 shadow-sm">
               <div className="text-xs font-medium text-amber-700 uppercase tracking-wide">
                 In Progress
               </div>
@@ -387,7 +387,7 @@ export default function TasksPage() {
                 {stats.inProgress}
               </div>
             </div>
-            <div className="bg-white/90 backdrop-blur-sm rounded-xl p-3 sm:p-4 border border-white/20 shadow-lg">
+            <div className="bg-gray-50 rounded-xl p-3 sm:p-4 border border-gray-200 shadow-sm">
               <div className="text-xs font-medium text-rose-700 uppercase tracking-wide">
                 Overdue
               </div>
@@ -397,7 +397,7 @@ export default function TasksPage() {
             </div>
           </div>
 
-          <div className="bg-white/90 backdrop-blur-sm rounded-2xl shadow-lg border border-white/20 p-4 sm:p-6 mb-6">
+          <div className="bg-gray-50 rounded-2xl shadow-sm border border-gray-200 p-4 sm:p-6 mb-6">
             <div className="flex flex-col lg:flex-row gap-4">
               {/* Search Bar */}
               <div className="flex-1 relative">
@@ -641,7 +641,7 @@ function TaskListView({
                       updateTaskStatus(task._id, e.target.value as TaskStatus);
                     }}
                     onClick={(e) => e.stopPropagation()}
-                    className={`text-xs font-semibold px-2 py-1 rounded-full border-0 focus:ring-2 focus:ring-blue-500 transition-all appearance-none ${getStatusColor(
+                    className={`text-xs font-semibold px-2 py-1 rounded-full border-2 focus:ring-2 focus:ring-blue-500 transition-all appearance-none cursor-pointer ${getStatusColor(
                       task.status
                     )}`}
                   >
@@ -654,7 +654,7 @@ function TaskListView({
                   </select>
                 ) : (
                   <span
-                    className={`text-xs font-semibold px-2 py-1 rounded-full ${getStatusColor(
+                    className={`text-xs font-semibold px-2 py-1 rounded-full border-2 ${getStatusColor(
                       task.status
                     )}`}
                   >
@@ -662,9 +662,9 @@ function TaskListView({
                   </span>
                 )}
                 <span
-                  className={`inline-flex items-center px-2 py-1 rounded-full text-xs font-bold ${getPriorityColor(
+                  className={`inline-flex items-center px-2 py-1 rounded-full text-xs font-bold border-2 ${getPriorityColor(
                     task.priority
-                  )} text-gray-800`}
+                  )}`}
                 >
                   {enumToDisplayText(task.priority)}
                 </span>
@@ -778,7 +778,7 @@ function TaskListView({
                           updateTaskStatus(task._id, e.target.value as TaskStatus);
                         }}
                         onClick={(e) => e.stopPropagation()}
-                        className={`text-xs font-semibold px-3 pr-8 py-1.5 rounded-full border-2 focus:ring-2 focus:ring-blue-500 transition-all appearance-none ${getStatusColor(
+                        className={`text-xs font-semibold px-3 pr-8 py-1.5 rounded-full border-2 focus:ring-2 focus:ring-blue-500 transition-all appearance-none cursor-pointer ${getStatusColor(
                           task.status
                         )}`}
                         title="Update task status"
@@ -792,11 +792,11 @@ function TaskListView({
                         <option value="blocked">Blocked</option>
                       </select>
                       {/* Custom arrow for select */}
-                      <svg className="pointer-events-none absolute right-2 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" viewBox="0 0 20 20" fill="currentColor"><path d="M7 8l3 3 3-3" /></svg>
+                      <svg className="pointer-events-none absolute right-2 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-800" viewBox="0 0 20 20" fill="currentColor"><path d="M7 8l3 3 3-3" /></svg>
                     </div>
                   ) : (
                     <span
-                      className={`text-xs font-semibold px-3 py-1.5 rounded-full ${getStatusColor(
+                      className={`text-xs font-semibold px-3 py-1.5 rounded-full border-2 ${getStatusColor(
                         task.status
                       )}`}
                     >
@@ -804,9 +804,9 @@ function TaskListView({
                     </span>
                   )}
                   <span
-                    className={`inline-flex items-center px-3 py-1.5 rounded-full text-xs font-bold ${getPriorityColor(
+                    className={`inline-flex items-center px-3 py-1.5 rounded-full text-xs font-bold border-2 ${getPriorityColor(
                       task.priority
-                    )} text-gray-800 ml-1`}
+                    )}`}
                   >
                     {enumToDisplayText(task.priority)}
                   </span>

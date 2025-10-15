@@ -88,8 +88,11 @@ export default function Dashboard() {
   if (authLoading || loading) {
     return (
       <AppLayout>
-        <div className="min-h-screen bg-gray-50 flex items-center justify-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
+        <div className="bg-white min-h-screen flex items-center justify-center">
+          <div className="bg-white/90 backdrop-blur-sm rounded-2xl p-8 shadow-lg border border-gray-200">
+            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto"></div>
+            <p className="text-center text-gray-700 mt-4 font-medium">Loading dashboard...</p>
+          </div>
         </div>
       </AppLayout>
     );
@@ -162,7 +165,7 @@ export default function Dashboard() {
 
   return (
     <AppLayout>
-      <div className="bg-gradient-to-r from-blue-200 via-blue-400 to-blue-600 min-h-screen">
+      <div className="bg-white min-h-screen">
         <header className="bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 shadow-lg border-b border-blue-300/60">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex justify-between items-center h-16">
@@ -180,9 +183,9 @@ export default function Dashboard() {
           </div>
         </header>
 
-        <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8 lg:py-12 bg-neutral-50">
+        <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8 lg:py-12">
 
-          <p className="text-xl sm:text-2xl text-slate-800 mb-8 sm:mb-12 font-medium">
+          <p className="text-xl sm:text-2xl text-gray-800 mb-8 sm:mb-12 font-medium">
             Welcome back, {user.firstName}!{" "}
             {user.role === "admin"
               ? " Manage your organization."

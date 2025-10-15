@@ -3373,6 +3373,10 @@ select {
     right: 0.5rem;
   }
 
+  .sm\:right-3 {
+    right: 0.75rem;
+  }
+
   .sm\:col-span-2 {
     grid-column: span 2 / span 2;
   }
@@ -3647,12 +3651,21 @@ select {
     padding-right: 1.25rem;
   }
 
+  .sm\:px-4 {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
   .sm\:pr-8 {
     padding-right: 2rem;
   }
 
   .sm\:pl-11 {
     padding-left: 2.75rem;
+  }
+
+  .sm\:pr-10 {
+    padding-right: 2.5rem;
   }
 
   .sm\:text-sm {
