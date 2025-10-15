@@ -266,12 +266,14 @@ export default function TasksPage() {
 
   if (authLoading || loading)
     return (
-      <div className="min-h-screen flex items-center justify-center bg-gray-50">
-        <div className="flex flex-col items-center gap-3">
-          <div className="animate-spin rounded-full h-10 w-10 border-3 border-blue-600 border-t-transparent"></div>
-          <p className="text-sm text-gray-600 font-medium">Loading tasks...</p>
+      <AppLayout>
+        <div className="bg-gradient-to-br from-blue-200 via-blue-400 to-blue-600 min-h-screen flex items-center justify-center">
+          <div className="bg-white/90 backdrop-blur-sm rounded-2xl p-8 shadow-lg border border-white/20">
+            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto"></div>
+            <p className="text-center text-gray-700 mt-4 font-medium">Loading tasks...</p>
+          </div>
         </div>
-      </div>
+      </AppLayout>
     );
   if (!user) return null;
 
@@ -329,23 +331,29 @@ export default function TasksPage() {
 
   return (
     <AppLayout>
-      <div className="bg-gradient-to-br from-slate-900 via-indigo-950 to-gray-900 min-h-screen">
+      <div className="bg-gradient-to-br from-blue-200 via-blue-400 to-blue-600 min-h-screen">
         {/* Header with Stats */}
-        <header className="bg-gradient-to-r from-slate-900 via-indigo-950 to-gray-900 shadow-lg border-b border-slate-800/60">
-          <div className="max-w-7xl mx-auto px-6 py-4 flex flex-col gap-4">
-            <div className="flex justify-between items-center">
+        <header className="bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 shadow-lg border-b border-blue-300/50">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex flex-col gap-4">
+            <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center space-y-4 sm:space-y-0">
               <div>
-                <h1 className="text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 via-purple-400 to-blue-400 drop-shadow-lg tracking-tight">
+                <h1 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-white drop-shadow-lg tracking-tight">
                   Tasks
                 </h1>
+                <p className="text-blue-100 text-sm sm:text-base mt-1 font-medium">
+                  {user?.role === "admin"
+                    ? "Manage team tasks and assignments"
+                    : "View your assigned tasks"}
+                </p>
               </div>
               {user?.role === "admin" && (
                 <button
                   onClick={() => setShowCreateModal(true)}
-                  className="bg-blue-600 text-white px-5 py-2.5 rounded-lg hover:bg-blue-700 transition-all duration-200 flex items-center gap-2 shadow-sm hover:shadow-md font-medium"
+                  className="bg-white/20 backdrop-blur-sm text-white px-4 sm:px-5 py-2.5 rounded-xl shadow-lg border border-white/30 flex items-center gap-2 font-bold hover:bg-white/30 transition-all duration-200"
                 >
                   <Plus className="w-4 h-4" />
-                  <span>New Task</span>
+                  <span className="hidden sm:inline">New Task</span>
+                  <span className="sm:hidden">New</span>
                 </button>
               )}
             </div>
@@ -353,63 +361,60 @@ export default function TasksPage() {
         </header>
 
         {/* Toolbar and Filters */}
-        <main className="max-w-7xl mx-auto px-6 py-6">
-                          <p className="text-2xl text-slate-200 mt-1 mb-2">
-                  Manage and track your work
-                </p>
-          <div className="flex gap-6 mt-4 mb-8">
-            <div className="bg-blue-50 rounded-lg p-3 border border-blue-200 flex-1">
+        <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-6 mt-4 mb-8">
+            <div className="bg-white/90 backdrop-blur-sm rounded-xl p-3 sm:p-4 border border-white/20 shadow-lg">
               <div className="text-xs font-medium text-blue-700 uppercase tracking-wide">
                 Total Tasks
               </div>
-              <div className="text-2xl font-bold text-blue-900 mt-1">
+              <div className="text-xl sm:text-2xl font-bold text-blue-900 mt-1">
                 {stats.total}
               </div>
             </div>
-            <div className="bg-emerald-50 rounded-lg p-3 border border-emerald-200 flex-1">
+            <div className="bg-white/90 backdrop-blur-sm rounded-xl p-3 sm:p-4 border border-white/20 shadow-lg">
               <div className="text-xs font-medium text-emerald-700 uppercase tracking-wide">
                 Completed
               </div>
-              <div className="text-2xl font-bold text-emerald-900 mt-1">
+              <div className="text-xl sm:text-2xl font-bold text-emerald-900 mt-1">
                 {stats.completed}
               </div>
             </div>
-            <div className="bg-amber-50 rounded-lg p-3 border border-amber-200 flex-1">
+            <div className="bg-white/90 backdrop-blur-sm rounded-xl p-3 sm:p-4 border border-white/20 shadow-lg">
               <div className="text-xs font-medium text-amber-700 uppercase tracking-wide">
                 In Progress
               </div>
-              <div className="text-2xl font-bold text-amber-900 mt-1">
+              <div className="text-xl sm:text-2xl font-bold text-amber-900 mt-1">
                 {stats.inProgress}
               </div>
             </div>
-            <div className="bg-rose-50 rounded-lg p-3 border border-rose-200 flex-1">
+            <div className="bg-white/90 backdrop-blur-sm rounded-xl p-3 sm:p-4 border border-white/20 shadow-lg">
               <div className="text-xs font-medium text-rose-700 uppercase tracking-wide">
                 Overdue
               </div>
-              <div className="text-2xl font-bold text-rose-900 mt-1">
+              <div className="text-xl sm:text-2xl font-bold text-rose-900 mt-1">
                 {stats.overdue}
               </div>
             </div>
           </div>
 
-          <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-4 mb-6">
+          <div className="bg-white/90 backdrop-blur-sm rounded-2xl shadow-lg border border-white/20 p-4 sm:p-6 mb-6">
             <div className="flex flex-col lg:flex-row gap-4">
               {/* Search Bar */}
               <div className="flex-1 relative">
-                <Search className="absolute left-3.5 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
+                <Search className="absolute left-3.5 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4 sm:w-5 sm:h-5" />
                 <input
                   type="text"
                   placeholder="Search tasks by title or description..."
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
-                  className="pl-11 pr-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent w-full text-sm transition-all"
+                  className="pl-10 sm:pl-11 pr-4 py-2.5 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent w-full text-sm transition-all shadow-sm"
                 />
               </div>
               {/* Filters Button */}
               <div className="flex items-center gap-2">
                 <button
                   onClick={() => setShowFilters(!showFilters)}
-                  className={`flex items-center gap-2 px-4 py-2.5 border rounded-lg text-sm font-medium transition-all ${
+                  className={`flex items-center gap-2 px-4 py-2.5 border rounded-xl text-sm font-medium transition-all ${
                     showFilters || activeFiltersCount > 0
                       ? "bg-blue-50 border-blue-300 text-blue-700"
                       : "bg-white border-gray-300 text-gray-700 hover:bg-gray-50"
@@ -477,14 +482,14 @@ export default function TasksPage() {
 
           {/* Tasks View */}
           {filteredTasks.length === 0 ? (
-            <div className="bg-white rounded-lg shadow-sm p-12 text-center border border-gray-200">
-              <div className="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                <Clock className="w-8 h-8 text-gray-400" />
+            <div className="bg-white/90 backdrop-blur-sm rounded-2xl shadow-lg p-8 sm:p-12 lg:p-16 text-center border border-white/20">
+              <div className="w-16 h-16 sm:w-20 sm:h-20 bg-blue-100 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                <Clock className="w-8 h-8 sm:w-10 sm:h-10 text-blue-600" />
               </div>
-              <h3 className="text-lg font-medium text-gray-900 mb-2">
+              <h3 className="text-lg sm:text-xl font-semibold text-gray-900 mb-2">
                 No tasks found
               </h3>
-              <p className="text-gray-600 mb-6">
+              <p className="text-gray-600 mb-6 text-sm sm:text-base max-w-md mx-auto">
                 {user?.role === "admin"
                   ? "Get started by creating your first task or adjust your filters to see existing tasks."
                   : "No tasks assigned to you yet. Please wait for an admin to assign tasks."}
@@ -492,7 +497,7 @@ export default function TasksPage() {
               {user?.role === "admin" && (
                 <button
                   onClick={() => setShowCreateModal(true)}
-                  className="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-colors"
+                  className="bg-blue-600 text-white px-6 py-3 rounded-xl hover:bg-blue-700 transition-colors shadow-lg"
                 >
                   + Create Your First Task
                 </button>
@@ -576,20 +581,20 @@ function TaskListView({
 
   if (!tasks.length)
     return (
-      <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-16 text-center">
-        <div className="w-20 h-20 bg-gradient-to-br from-gray-100 to-gray-200 rounded-2xl flex items-center justify-center mx-auto mb-4">
-          <Clock className="w-10 h-10 text-gray-400" />
+      <div className="bg-white/90 backdrop-blur-sm rounded-2xl shadow-lg border border-white/20 p-12 sm:p-16 text-center">
+        <div className="w-16 h-16 sm:w-20 sm:h-20 bg-blue-100 rounded-2xl flex items-center justify-center mx-auto mb-4">
+          <Clock className="w-8 h-8 sm:w-10 sm:h-10 text-blue-600" />
         </div>
-        <h3 className="text-xl font-semibold text-gray-900 mb-2">
+        <h3 className="text-lg sm:text-xl font-semibold text-gray-900 mb-2">
           No tasks found
         </h3>
-        <p className="text-gray-500 mb-6 max-w-md mx-auto">
+        <p className="text-gray-500 mb-6 max-w-md mx-auto text-sm sm:text-base">
           Get started by creating your first task or adjust your filters to see
           existing tasks.
         </p>
         <button
           onClick={() => setShowCreateModal(true)}
-          className="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-all shadow-sm hover:shadow-md font-medium inline-flex items-center gap-2"
+          className="bg-blue-600 text-white px-6 py-3 rounded-xl hover:bg-blue-700 transition-all shadow-lg font-medium inline-flex items-center gap-2"
         >
           <Plus className="w-4 h-4" />
           Create Your First Task
@@ -598,79 +603,58 @@ function TaskListView({
     );
 
   return (
-    <div className="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden">
-      {/* Table Header */}
-      <div className="bg-gray-50 border-b border-gray-200 px-6 py-3">
-        <div className="grid grid-cols-12 gap-4 text-xs font-semibold text-gray-600 uppercase tracking-wider">
-          <div className="col-span-5">Task</div>
-          <div className="col-span-2">Status</div>
-          <div className="col-span-2">Priority</div>
-          <div className="col-span-2">Due Date</div>
-          <div className="col-span-1 text-right">Actions</div>
-        </div>
-      </div>
-
-      {/* Task Rows */}
-      <div className="divide-y divide-gray-100">
-        {tasks.map((task: Task) => (
-          <div
-            key={task._id}
-            className="px-6 py-4 hover:bg-gray-50 transition-colors group cursor-pointer"
-            onClick={() => router.push(`/tasks/${task._id}`)}
-          >
-            <div className="grid grid-cols-12 gap-4 items-center">
-              {/* Task Details */}
-              <div className="col-span-5">
-                <div className="flex items-start gap-3">
-                  <div className="flex-1 min-w-0">
-                    <div className="flex items-center gap-2 mb-1">
-                      <h3 className="text-sm font-semibold text-gray-900 truncate group-hover:text-blue-600 transition-colors">
-                        {task.title}
-                      </h3>
-                      {isOverdue(task.dueDate) && (
-                        <span className="flex items-center gap-1 text-xs text-rose-600 font-medium">
-                          <AlertCircle className="w-3.5 h-3.5" />
-                          Overdue
-                        </span>
-                      )}
-                    </div>
-                    <p className="text-sm text-gray-600 line-clamp-1">
-                      {task.description}
-                    </p>
+    <div className="bg-white/90 backdrop-blur-sm rounded-2xl shadow-lg border border-white/20 overflow-hidden">
+      {/* Mobile Card View */}
+      <div className="block lg:hidden">
+        <div className="divide-y divide-gray-100">
+          {tasks.map((task: Task) => (
+            <div
+              key={task._id}
+              className="p-4 hover:bg-gray-50 transition-colors cursor-pointer"
+              onClick={() => router.push(`/tasks/${task._id}`)}
+            >
+              <div className="flex items-start justify-between mb-3">
+                <div className="flex-1 min-w-0">
+                  <div className="flex items-center gap-2 mb-1">
+                    <h3 className="text-sm font-semibold text-gray-900 truncate">
+                      {task.title}
+                    </h3>
+                    {isOverdue(task.dueDate) && (
+                      <span className="flex items-center gap-1 text-xs text-rose-600 font-medium">
+                        <AlertCircle className="w-3 h-3" />
+                        Overdue
+                      </span>
+                    )}
                   </div>
+                  <p className="text-xs text-gray-600 line-clamp-2 mb-2">
+                    {task.description}
+                  </p>
                 </div>
               </div>
-
-              {/* Status & Priority Inline */}
-              <div className="col-span-4 flex items-center gap-3">
+              
+              <div className="flex flex-wrap items-center gap-2 mb-3">
                 {canEditTask(task) ? (
-                  <div className="relative">
-                    <select
-                      value={task.status}
-                      onChange={(e) => {
-                        e.stopPropagation();
-                        updateTaskStatus(task._id, e.target.value as TaskStatus);
-                      }}
-                      onClick={(e) => e.stopPropagation()}
-                      className={`text-xs font-semibold px-3 pr-8 py-1.5 rounded-full border-2 focus:ring-2 focus:ring-blue-500 transition-all appearance-none ${getStatusColor(
-                        task.status
-                      )}`}
-                      title="Update task status"
-                      style={{ minWidth: 110 }}
-                    >
-                      <option value="todo">To Do</option>
-                      <option value="in_progress">In Progress</option>
-                      <option value="review">In Review</option>
-                      <option value="testing">Testing</option>
-                      <option value="completed">Completed</option>
-                      <option value="blocked">Blocked</option>
-                    </select>
-                    {/* Custom arrow for select */}
-                    <svg className="pointer-events-none absolute right-2 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" viewBox="0 0 20 20" fill="currentColor"><path d="M7 8l3 3 3-3" /></svg>
-                  </div>
+                  <select
+                    value={task.status}
+                    onChange={(e) => {
+                      e.stopPropagation();
+                      updateTaskStatus(task._id, e.target.value as TaskStatus);
+                    }}
+                    onClick={(e) => e.stopPropagation()}
+                    className={`text-xs font-semibold px-2 py-1 rounded-full border-0 focus:ring-2 focus:ring-blue-500 transition-all appearance-none ${getStatusColor(
+                      task.status
+                    )}`}
+                  >
+                    <option value="todo">To Do</option>
+                    <option value="in_progress">In Progress</option>
+                    <option value="review">In Review</option>
+                    <option value="testing">Testing</option>
+                    <option value="completed">Completed</option>
+                    <option value="blocked">Blocked</option>
+                  </select>
                 ) : (
                   <span
-                    className={`text-xs font-semibold px-3 py-1.5 rounded-full ${getStatusColor(
+                    className={`text-xs font-semibold px-2 py-1 rounded-full ${getStatusColor(
                       task.status
                     )}`}
                   >
@@ -678,18 +662,17 @@ function TaskListView({
                   </span>
                 )}
                 <span
-                  className={`inline-flex items-center px-3 py-1.5 rounded-full text-xs font-bold ${getPriorityColor(
+                  className={`inline-flex items-center px-2 py-1 rounded-full text-xs font-bold ${getPriorityColor(
                     task.priority
-                  )} text-gray-800 ml-1`}
+                  )} text-gray-800`}
                 >
                   {enumToDisplayText(task.priority)}
                 </span>
               </div>
 
-              {/* Due Date */}
-              <div className="col-span-2">
-                <div className="flex items-center gap-2 text-sm">
-                  <Calendar className="w-4 h-4 text-gray-400" />
+              <div className="flex items-center justify-between">
+                <div className="flex items-center gap-1 text-xs">
+                  <Calendar className="w-3 h-3 text-gray-400" />
                   <span
                     className={
                       isOverdue(task.dueDate)
@@ -700,9 +683,152 @@ function TaskListView({
                     {formatDate(task.dueDate)}
                   </span>
                 </div>
+                
+                <div className="flex items-center gap-1">
+                  <button
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      openDetailsModal(task);
+                    }}
+                    className="px-2 py-1 text-xs text-gray-600 hover:text-green-600 hover:bg-green-50 rounded transition-all"
+                  >
+                    Details
+                  </button>
+                  {canEditTask(task) && (
+                    <button
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        openEditModal(task);
+                      }}
+                      className="px-2 py-1 text-xs text-gray-600 hover:text-blue-600 hover:bg-blue-50 rounded transition-all"
+                    >
+                      Edit
+                    </button>
+                  )}
+                  {canDeleteTask(task) && (
+                    <button
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        handleDeleteTask(task._id);
+                      }}
+                      className="p-1 text-gray-400 hover:text-rose-600 hover:bg-rose-50 rounded transition-all"
+                    >
+                      <Trash2 className="w-3 h-3" />
+                    </button>
+                  )}
+                </div>
               </div>
+            </div>
+          ))}
+        </div>
+      </div>
 
-              {/* Actions */}
+      {/* Desktop Table View */}
+      <div className="hidden lg:block">
+        {/* Table Header */}
+        <div className="bg-blue-50 border-b border-blue-100 px-6 py-3">
+          <div className="grid grid-cols-12 gap-4 text-xs font-semibold text-blue-700 uppercase tracking-wider">
+            <div className="col-span-5">Task</div>
+            <div className="col-span-2">Status</div>
+            <div className="col-span-2">Priority</div>
+            <div className="col-span-2">Due Date</div>
+            <div className="col-span-1 text-right">Actions</div>
+          </div>
+        </div>
+
+        {/* Task Rows */}
+        <div className="divide-y divide-gray-100">
+          {tasks.map((task: Task) => (
+            <div
+              key={task._id}
+              className="px-6 py-4 hover:bg-gray-50 transition-colors group cursor-pointer"
+              onClick={() => router.push(`/tasks/${task._id}`)}
+            >
+              <div className="grid grid-cols-12 gap-4 items-center">
+                {/* Task Details */}
+                <div className="col-span-5">
+                  <div className="flex items-start gap-3">
+                    <div className="flex-1 min-w-0">
+                      <div className="flex items-center gap-2 mb-1">
+                        <h3 className="text-sm font-semibold text-gray-900 truncate group-hover:text-blue-600 transition-colors">
+                          {task.title}
+                        </h3>
+                        {isOverdue(task.dueDate) && (
+                          <span className="flex items-center gap-1 text-xs text-rose-600 font-medium">
+                            <AlertCircle className="w-3.5 h-3.5" />
+                            Overdue
+                          </span>
+                        )}
+                      </div>
+                      <p className="text-sm text-gray-600 line-clamp-1">
+                        {task.description}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Status & Priority Inline */}
+                <div className="col-span-4 flex items-center gap-3">
+                  {canEditTask(task) ? (
+                    <div className="relative">
+                      <select
+                        value={task.status}
+                        onChange={(e) => {
+                          e.stopPropagation();
+                          updateTaskStatus(task._id, e.target.value as TaskStatus);
+                        }}
+                        onClick={(e) => e.stopPropagation()}
+                        className={`text-xs font-semibold px-3 pr-8 py-1.5 rounded-full border-2 focus:ring-2 focus:ring-blue-500 transition-all appearance-none ${getStatusColor(
+                          task.status
+                        )}`}
+                        title="Update task status"
+                        style={{ minWidth: 110 }}
+                      >
+                        <option value="todo">To Do</option>
+                        <option value="in_progress">In Progress</option>
+                        <option value="review">In Review</option>
+                        <option value="testing">Testing</option>
+                        <option value="completed">Completed</option>
+                        <option value="blocked">Blocked</option>
+                      </select>
+                      {/* Custom arrow for select */}
+                      <svg className="pointer-events-none absolute right-2 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" viewBox="0 0 20 20" fill="currentColor"><path d="M7 8l3 3 3-3" /></svg>
+                    </div>
+                  ) : (
+                    <span
+                      className={`text-xs font-semibold px-3 py-1.5 rounded-full ${getStatusColor(
+                        task.status
+                      )}`}
+                    >
+                      {enumToDisplayText(task.status)}
+                    </span>
+                  )}
+                  <span
+                    className={`inline-flex items-center px-3 py-1.5 rounded-full text-xs font-bold ${getPriorityColor(
+                      task.priority
+                    )} text-gray-800 ml-1`}
+                  >
+                    {enumToDisplayText(task.priority)}
+                  </span>
+                </div>
+
+                {/* Due Date */}
+                <div className="col-span-2">
+                  <div className="flex items-center gap-2 text-sm">
+                    <Calendar className="w-4 h-4 text-gray-400" />
+                    <span
+                      className={
+                        isOverdue(task.dueDate)
+                          ? "text-rose-600 font-semibold"
+                          : "text-gray-700"
+                      }
+                    >
+                      {formatDate(task.dueDate)}
+                    </span>
+                  </div>
+                </div>
+
+                {/* Actions */}
                 <div className="col-span-1 text-right">
                   <div className="flex items-center justify-end gap-1">
                     {/* Details Button */}
@@ -744,9 +870,10 @@ function TaskListView({
                     )}
                   </div>
                 </div>
+              </div>
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
     </div>
   );
