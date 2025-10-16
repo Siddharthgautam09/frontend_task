@@ -315,6 +315,14 @@ Authorization: Bearer <your-jwt-token>
 - **Prettier**: Use for code formatting
 - **Comments**: Document complex logic
 - **Testing**: Write tests for new features
+  
+### Admin Credentials-
+Email-admin@example.com
+password-Admin@1234
+
+User Credentials-
+Email-user@example.com
+password-User@1234
 
 ### Development Setup
 ```bash
@@ -331,13 +339,7 @@ npm run type-check
 npm run test
 
 
-Admin Credentials-
-Email-admin@example.com
-password-Admin@1234
 
-User Credentials-
-Email-user@example.com
-password-User@1234
 
 
 # Build for production
