@@ -330,28 +330,17 @@ npm run type-check
 # Run tests
 npm run test
 
+
+Admin Credentials-
+Email-admin@example.com
+password-Admin@1234
+
+User Credentials-
+Email-user@example.com
+password-User@1234
+
+
 # Build for production
-npm run build
-```
-
-## 📞 Support
-
-### Getting Help
-- **Documentation**: Check the comprehensive guides above
-- **API Issues**: Use the interactive API documentation
-- **Bug Reports**: Create GitHub issues with detailed descriptions
-- **Feature Requests**: Submit enhancement proposals
-- **Security Issues**: Report privately to maintainers
-
-### Community
-- **Discussions**: Use GitHub Discussions for questions
-- **Updates**: Watch the repository for updates
-- **Contributing**: See contributing guidelines above
-
-### Contact
-- **Email**: support@your-domain.com
-- **Documentation**: Always check docs first
-- **Response Time**: We aim to respond within 24 hours
 
 ## 📜 License
 
